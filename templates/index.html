@@ -1,0 +1,10 @@
+{% extends "_layout.html" %}
+
+<ul>
+{% for k, v in location.items() %}
+
+    <li>{{ k }} has value {{ v }}</li>
+
+{% endfor %}
+</ul>
+
