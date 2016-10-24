@@ -3,11 +3,12 @@
 from flask import Flask, request, render_template, redirect, url_for, session, flash
 from flask_googlemaps import GoogleMaps, Map
 import requests
+import config
 
 app = Flask(__name__)
 
-#init the extension
-GoogleMaps(app)
+#initialize the extension
+GoogleMaps(app, key=config.GOOGLEMAPS_API_KEY)
 
 # headers
 hdr = {
@@ -26,12 +27,12 @@ def get_client_ip():
 @app.route('/', methods=['GET', 'POST'])
 def index():
     location = None
+
     if request.method == 'POST':
         ip = request.form['ip_add']
         format = request.form['format']
-
     else:
-        ip = '71.43.49.234' #get_client_ip()
+        ip = get_client_ip()
         format = 'json'
 
     url = base_url + format + '/' + ip
@@ -40,7 +41,7 @@ def index():
         r = requests.get(url, headers=hdr)
         if r.status_code == 200:
             location = r.json()
-    except ConnectionError as e:
+    except requests.exceptions.ConnectionError as e:
         return str(e)
 
     mymap = Map(
