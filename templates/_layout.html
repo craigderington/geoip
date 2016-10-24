@@ -44,11 +44,11 @@
                 <a class="navbar-brand" href="#"><i class="fa fa-map"></i> GeoIP </a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <form class="navbar-form navbar-right">
+                <form class="navbar-form navbar-right" method="post" action="{{ url_for('index') }}">
                     <div class="form-group">
-                        <input type="text" placeholder="IP Address" class="form-control">
+                        <input type="text" name="ip_add" placeholder="Enter IP Address" class="form-control">
                     </div>
-                    <button type="submit" class="btn btn-success">GeoIP</button>
+                    <button type="submit" class="btn btn-inverse">GeoIP</button>
                 </form>
             </div><!--/.navbar-collapse -->
         </div>
@@ -68,7 +68,7 @@
 
 
     <footer class="footer" style="margin-top:100px;">
-        <p>&copy; 2016 GeoIP.io  <span class="pull-right">Made with <i class="fa fa-heart-o"></i> in Oviedo, FL by Craig Derington. </span></p>
+        <p>&copy; 2016 GeoIP.io  <span class="pull-right">Made with <i class="fa fa-heart-o"></i> in Oviedo, FL.</span></p>
     </footer>
 
 </div> <!-- /container -->

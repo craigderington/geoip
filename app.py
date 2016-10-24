@@ -21,6 +21,10 @@ base_url = 'http://freegeoip.net/'
 
 def get_client_ip():
     client_ip = request.remote_addr
+    if request.remote_addr == '127.0.0.1':
+        client_ip = '71.43.49.234'
+    else:
+        client_ip = client_ip
     return client_ip
 
 
@@ -30,7 +34,7 @@ def index():
 
     if request.method == 'POST':
         ip = request.form['ip_add']
-        format = request.form['format']
+        format = 'json'
     else:
         ip = get_client_ip()
         format = 'json'
@@ -46,9 +50,9 @@ def index():
 
     mymap = Map(
         identifier="view-side",
-        lat=37.4419,
-        lng=-122.1419,
-        markers=[(37.4419, -122.1419)]
+        lat=location['latitude'],
+        lng=location['longitude'],
+        markers=[(location['latitude'], location['longitude'])]
     )
 
     return render_template(
