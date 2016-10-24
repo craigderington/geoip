@@ -1,19 +1,11 @@
 {% extends "_layout.html" %}
-
-
-
-
-
 {% block content %}
-
-
-<ul>
+<ul class="list-group">
 {% for k, v in location.items() %}
-
-    <li>{{ k }} has value {{ v }}</li>
-
+    <li class="list-group-item">
+        <span class="badge"><i class="fa fa-map-marker"></i></span>
+        {{ k.upper() }}: <strong>{{ v }}</strong>
+    </li>
 {% endfor %}
 </ul>
-
-
 {% endblock %}

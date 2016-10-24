@@ -52,7 +52,10 @@ def index():
         identifier="view-side",
         lat=location['latitude'],
         lng=location['longitude'],
-        markers=[(location['latitude'], location['longitude'])]
+        markers=[(location['latitude'], location['longitude'])],
+        style=('height:500px;'
+               'width=500px;'
+        ),
     )
 
     return render_template(
