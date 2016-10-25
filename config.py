@@ -1,7 +1,7 @@
 import os
 
 # app settings
-DEBUG = True
+DEBUG = False
 SECRET_KEY = os.urandom(10)
 GOOGLEMAPS_API_KEY = "AIzaSyBeOoT5BWTcghKTeWyjlaZlZ-SZNTjkp10"
 
