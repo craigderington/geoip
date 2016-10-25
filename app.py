@@ -21,7 +21,7 @@ base_url = 'http://freegeoip.net/'
 
 def get_client_ip():
     client_ip = request.remote_addr
-    if request.remote_addr == '127.0.0.1':
+    if request.remote_addr == '127.0.0.1' or request.remote_addr == '':
         client_ip = '71.43.49.234'
     else:
         client_ip = client_ip
@@ -45,19 +45,15 @@ def index():
         r = requests.get(url, headers=hdr)
         if r.status_code == 200:
             location = r.json()
-            if location['latitude'] == '':
-                location['latitude'] = '37.3394'
-                location['longitude'] = '-121.895'
-            else:
-                mymap = Map(
-                    identifier="view-side",
-                    lat=location['latitude'],
-                    lng=location['longitude'],
-                    markers=[(location['latitude'], location['longitude'])],
-                    style=('height:500px;'
-                           'width=500px;'
-                    ),
-                )
+            mymap = Map(
+                identifier="view-side",
+                lat=location['latitude'],
+                lng=location['longitude'],
+                markers=[(location['latitude'], location['longitude'])],
+                style=('height:500px;'
+                       'width=500px;'
+                ),
+            )
 
     except requests.exceptions.ConnectionError as e:
         return str(e)
