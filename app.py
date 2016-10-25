@@ -45,18 +45,19 @@ def index():
         r = requests.get(url, headers=hdr)
         if r.status_code == 200:
             location = r.json()
+
+        mymap = Map(
+            identifier="view-side",
+            lat=location['latitude'],
+            lng=location['longitude'],
+            markers=[(location['latitude'], location['longitude'])],
+            style=('height:500px;'
+                   'width=500px;'
+            ),
+        )
+
     except requests.exceptions.ConnectionError as e:
         return str(e)
-
-    mymap = Map(
-        identifier="view-side",
-        lat=location['latitude'],
-        lng=location['longitude'],
-        markers=[(location['latitude'], location['longitude'])],
-        style=('height:500px;'
-               'width=500px;'
-        ),
-    )
 
     return render_template(
             'index.html',
