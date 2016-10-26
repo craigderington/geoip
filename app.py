@@ -59,16 +59,16 @@ def index():
         return str(e)
 
     return render_template(
-            'index.html',
-            location=location,
-            mymap=mymap
+        'index.html',
+        location=location,
+        mymap=mymap
     )
 
 
 if __name__ == '__main__':
     app.run(
         host='0.0.0.0',
-        port=8000,
+        port=config.PORT,
         debug=config.DEBUG,
     )
 
