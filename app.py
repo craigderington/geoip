@@ -1,5 +1,6 @@
 #! /usr/bin/python
 
+import os
 from flask import Flask, request, render_template, redirect, url_for, session, flash
 from flask_googlemaps import GoogleMaps, Map
 import requests
