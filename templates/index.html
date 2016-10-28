@@ -1,5 +1,5 @@
 {% extends "_layout.html" %}
-{% block title %}GeoIP Lookup{% endblock %}
+{% block title %}GeoIP Lookup &raquo; Convert IP Address to a Physical Location.{% endblock %}
 {% block content %}
 <ul class="list-group">
 {% for k, v in location.items() %}
@@ -10,5 +10,8 @@
         </span>
     </li>
 {% endfor %}
+    <li class="list-group-item">
+        <i class="fa fa-linux"></i> A web service by Python Development Systems, LLC.
+    </li>
 </ul>
 {% endblock %}
