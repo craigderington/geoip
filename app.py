@@ -46,6 +46,7 @@ def index():
         r = requests.get(url, headers=hdr)
         if r.status_code == 200:
             location = r.json()
+            ip_address = ip
             mymap = Map(
                 identifier="view-side",
                 lat=location['latitude'],
@@ -62,6 +63,7 @@ def index():
     return render_template(
         'index.html',
         location=location,
+        ip_address=ip_address,
         mymap=mymap
     )
 
