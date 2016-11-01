@@ -34,7 +34,7 @@ def index():
     location = None
 
     if request.method == 'POST':
-        ip = request.form['ip_add']
+        ip = request.form['ip_add'].strip()
         format = 'json'
     else:
         ip = get_client_ip()
