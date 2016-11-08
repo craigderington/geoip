@@ -1,17 +1,48 @@
 {% extends "_layout.html" %}
 {% block title %}GeoIP Lookup &raquo; Convert IP Address to a Physical Location.{% endblock %}
 {% block content %}
-<ul class="list-group">
-{% for k, v in location.items() %}
-    <li class="list-group-item">
-        {{ k.upper() }}: <strong>{{ v }}</strong>
-        <span class="label label-primary pull-right">
-            <i class="fa fa-map-marker fa-2x"></i>
-        </span>
+
+<!-- tabs -->
+<ul class="nav nav-tabs">
+    <li class="active">
+        <a href="#home" data-toggle="tab" aria-expanded="true"><i class="fa fa-map-marker"></i> IP Location</a>
     </li>
-{% endfor %}
-    <li class="list-group-item">
-        <i class="fa fa-linux"></i> A web service by Python Development Systems, LLC.
+    <li>
+        <a href="#whois" data-toggle="tab"><i class="fa fa-info-circle"></i> WHOIS</a>
     </li>
 </ul>
+
+<div class="tab-content" style="margin-top:5px;">
+    <div class="tab-pane fade active in" id="home">
+        <ul class="list-group">
+        {% for k, v in location.items() %}
+            <li class="list-group-item">
+                {{ k.upper() }}: <strong>{{ v }}</strong>
+                <span class="label label-primary pull-right">
+                    <i class="fa fa-map-marker fa-2x"></i>
+                </span>
+            </li>
+        {% endfor %}
+            <li class="list-group-item">
+                <i class="fa fa-linux"></i> A web service by <a href="http://www.python-development-systems.com" target="_blank">Python Development Systems, LLC.</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-pane fade in" id="whois">
+        <ul class="list-group">
+            <li class="list-group-item" style="background-color:#f2f2f2;">
+                 <i class="fa fa-signal"></i> <strong>WHOIS Response</strong> from <a href="https://www.arin.net" target="_blank">ARIN.net</a>
+            </li>
+            <li class="list-group-item"><i class="fa fa-wifi"></i> Network Name: {{ results['objects'][entity]['contact']['name'] }}</li>
+            <li class="list-group-item"><i class="fa fa-vcard"></i> Owner Name: {{ results['network']['name'] }}</li>
+            <li class="list-group-item"><i class="fa fa-map"></i> Address:  <a href="https://www.google.com/maps?q={{ results['objects'][entity]['contact']['address'][0]['value'] }}" target="_blank">{{ results['objects'][entity]['contact']['address'][0]['value'] }}</a></li>
+            <li class="list-group-item"><i class="fa fa-hand-grab-o"></i> Handle: {{ results['network']['handle'] }}</li>
+            <li class="list-group-item"><i class="fa fa-map-marker"></i> CIDR: {{ results['network']['cidr'] }}</li>
+            <li class="list-group-item"><i class="fa fa-arrow-circle-right"></i> Start Address: {{ results['network']['start_address'] }}</li>
+            <li class="list-group-item"><i class="fa fa-arrow-circle-left"></i> End Address: {{ results['network']['end_address'] }}</li>
+            <li class="list-group-item"><i class="fa fa-shield"></i> Entity: {{ entity }}</li>
+            <li class="list-group-item"><i class="fa fa-warning"></i> IP Version: {{ results['network']['ip_version'] }}</li>
+        </ul>
+    </div>
+</div>
 {% endblock %}
