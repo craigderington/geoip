@@ -17,9 +17,6 @@ hdr = {
     'user-agent': 'Mozilla 5.0/Linux'
 }
 
-# base url
-base_url = 'http://freegeoip.net/'
-
 
 def get_client_ip():
     client_ip = request.remote_addr
@@ -41,7 +38,7 @@ def index():
         ip = get_client_ip()
         format = 'json'
 
-    url = base_url + format + '/' + ip
+    url = config.BASE_URL + format + '/' + ip
 
     try:
         r = requests.get(url, headers=hdr)
