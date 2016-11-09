@@ -8,7 +8,7 @@
         <a href="#home" data-toggle="tab" aria-expanded="true"><i class="fa fa-map-marker"></i> IP Location</a>
     </li>
     <li>
-        <a href="#whois" data-toggle="tab"><i class="fa fa-info-circle"></i> WHOIS</a>
+        <a href="#whois" data-toggle="tab"><i class="fa fa-info-circle"></i> IP WHOIS</a>
     </li>
 </ul>
 
@@ -36,8 +36,8 @@
             <li class="list-group-item"><i class="fa fa-wifi"></i> Network Name: {{ results['objects'][entity]['contact']['name'] }}</li>
             <li class="list-group-item"><i class="fa fa-vcard"></i> Owner Name: {{ results['network']['name'] }}</li>
             <li class="list-group-item"><i class="fa fa-map"></i> Address:  <a href="https://www.google.com/maps?q={{ results['objects'][entity]['contact']['address'][0]['value'] }}" target="_blank">{{ results['objects'][entity]['contact']['address'][0]['value'] }}</a></li>
-            <li class="list-group-item"><i class="fa fa-hand-grab-o"></i> Handle: {{ results['network']['handle'] }}</li>
-            <li class="list-group-item"><i class="fa fa-map-marker"></i> CIDR: {{ results['network']['cidr'] }}</li>
+            <li class="list-group-item"><i class="fa fa-file-text"></i> Handle: {{ results['network']['handle'] }}</li>
+            <li class="list-group-item"><i class="fa fa-telegram"></i> CIDR: {{ results['network']['cidr'] }}</li>
             <li class="list-group-item"><i class="fa fa-arrow-circle-right"></i> Start Address: {{ results['network']['start_address'] }}</li>
             <li class="list-group-item"><i class="fa fa-arrow-circle-left"></i> End Address: {{ results['network']['end_address'] }}</li>
             <li class="list-group-item"><i class="fa fa-shield"></i> Entity: {{ entity }}</li>
