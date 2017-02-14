@@ -57,9 +57,9 @@ def index():
             )
 
             # whois lookup
-            obj = IPWhois(ip)
-            results = obj.lookup_rdap(depth=1)
-            entity = results['entities'][0]
+            # obj = IPWhois(ip)
+            # results = obj.lookup_rdap(depth=1)
+            # entity = results['entities'][0]
 
     except requests.exceptions.ConnectionError as e:
         return str(e)
@@ -68,8 +68,8 @@ def index():
         'index.html',
         location=location,
         ip_address=ip_address,
-        results=results,
-        entity=entity,
+        #results=results,
+        #entity=entity,
         mymap=mymap
     )
 

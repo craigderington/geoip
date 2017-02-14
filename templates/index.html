@@ -7,9 +7,9 @@
     <li class="active">
         <a href="#home" data-toggle="tab" aria-expanded="true"><i class="fa fa-map-marker"></i> IP Location</a>
     </li>
-    <li>
+    {#<li>
         <a href="#whois" data-toggle="tab"><i class="fa fa-info-circle"></i> IP WHOIS</a>
-    </li>
+    </li>#}
 </ul>
 
 <div class="tab-content" style="margin-top:5px;">
@@ -28,6 +28,7 @@
             </li>
         </ul>
     </div>
+    {# remove for ipwhois failure 
     <div class="tab-pane fade in" id="whois">
         <ul class="list-group">
             <li class="list-group-item" style="background-color:#f2f2f2;">
@@ -44,5 +45,6 @@
             <li class="list-group-item"><i class="fa fa-warning"></i> IP Version: {{ results['network']['ip_version'] }}</li>
         </ul>
     </div>
+    #}
 </div>
 {% endblock %}
