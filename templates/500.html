@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}Geo-IP-Lookup | 500 Error | Internal Server Error{% endblock %}</title>
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet"
+          type="text/css"
+          href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css"
+          integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          type="text/css"
+          href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{{ url_for('static', filename='css/jumbotron-narrow.css') }}">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+
+<div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><i class="fa fa-map"></i> Geo-IP-Lookup </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <form class="navbar-form navbar-right" method="post" action="{{ url_for('index') }}">
+                    <div class="form-group">
+                        <input type="text" name="ip_add" placeholder="Enter IP Address" class="form-control" value="{% if request.form['ip_add'] %}{{ request.form['ip_add'].strip() }}{% else %}{{ ip_address }}{% endif %}">
+                    </div>
+                    <button type="submit" class="btn btn-default">GeoIP</button>
+                </form>
+            </div><!--/.navbar-collapse -->
+        </div>
+    </nav>
+
+    <div class="row" style="margin-top:60px;">
+        <div class="jumbotron">
+            <h1><i class="fa fa-warning"></i> "Houston, We Have a Problem!" </h1>
+            <p>Sorry, this server returned a 500 Internal Server Error fetching the requeseted resource.  The error has been logged and the administrator has been notified.</p>
+            <p>Please <a href="{% url_for('index') %}">click here</a> to go to this site's homepage.</p>
+        </div>
+    </div>
+
+
+    <footer class="footer" style="margin-top:100px;border-top:2px dotted #f2f2f2;">
+        <div class="row" style="margin-top:10px;">
+            <div class="col-md-6 col-sm-6">
+                &copy; 2017 Geo-IP-Lookup.com.  All Rights Reserved.
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <span class="pull-right">Made with <i class="fa fa-heart-o"></i> in Oviedo, FL.</span>
+            </div>
+        </div>
+    </footer>
+
+</div> <!-- /container -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

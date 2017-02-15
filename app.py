@@ -56,6 +56,7 @@ def index():
                 ),
             )
 
+            # IPWhois calls are failing
             # whois lookup
             # obj = IPWhois(ip)
             # results = obj.lookup_rdap(depth=1)
@@ -72,6 +73,20 @@ def index():
         #entity=entity,
         mymap=mymap
     )
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template(
+        '404.html'
+    ), 404
+
+
+@app.errorhandler(500)
+def server_error(e):
+    return render_template(
+        '500.html'
+    ), 500
 
 
 if __name__ == '__main__':
