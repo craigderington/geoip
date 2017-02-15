@@ -43,12 +43,14 @@
                 <a class="navbar-brand" href="/"><i class="fa fa-map"></i> Geo-IP-Lookup </a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
+                <!---
                 <form class="navbar-form navbar-right" method="post" action="{{ url_for('index') }}">
                     <div class="form-group">
                         <input type="text" name="ip_add" placeholder="Enter IP Address" class="form-control" value="{% if request.form['ip_add'] %}{{ request.form['ip_add'].strip() }}{% else %}{{ ip_address }}{% endif %}">
                     </div>
                     <button type="submit" class="btn btn-default">GeoIP</button>
                 </form>
+                --->
             </div><!--/.navbar-collapse -->
         </div>
     </nav>
@@ -57,7 +59,7 @@
         <div class="jumbotron">
             <h1><i class="fa fa-warning"></i> Page Not Found </h1>
             <p>Sorry, the page you requested can not be found on this server.  The error has been logged and the administrator has been notified.</p>
-            <p>Please <a href="{% url_for('index') %}">click here</a> to go to this site's homepage.</p>
+            <p>Please <a href="http://www.geo-ip-lookup.com">click here</a> to go to this site's homepage.</p>
         </div>
     </div>
 
