@@ -9,12 +9,13 @@ import config
 
 app = Flask(__name__)
 
-#initialize the extension
+# initialize the extension
 GoogleMaps(app, key=config.GOOGLEMAPS_API_KEY)
 
 # headers
 hdr = {
-    'user-agent': 'Mozilla 5.0/Linux'
+    'user-agent': 'Geo-IP-Lookup v.01',
+    'content-type': 'application/json'
 }
 
 
@@ -38,39 +39,45 @@ def index():
         ip = get_client_ip()
         format = 'json'
 
-    url = config.BASE_URL + format + '/' + ip
+    # set the API url
+    url = config.BASE_URL + str(ip) + '?access_key=' + config.IP_STACK_KEY
 
     try:
+        # call the API with requests
         r = requests.get(url, headers=hdr)
+
+        # check the response
         if r.status_code == 200:
-            location = r.json()
+            results = r.json()
+
+            # delete the key location, not needed for the output
+            if 'location' in results:
+                del results['location']
+
+            # set the IP address for the template
             ip_address = ip
+
+            # dump mymap vars
             mymap = Map(
                 identifier="view-side",
-                lat=location['latitude'],
-                lng=location['longitude'],
-                markers=[(location['latitude'], location['longitude'])],
+                lat=results['latitude'],
+                lng=results['longitude'],
+                markers=[(results['latitude'], results['longitude'])],
                 style=(
                     'height:525px;'
                     'width=500px;'
                 ),
             )
 
-            # IPWhois calls are failing
-            # whois lookup
-            # obj = IPWhois(ip)
-            # results = obj.lookup_rdap(depth=1)
-            # entity = results['entities'][0]
-
-    except requests.exceptions.ConnectionError as e:
-        return str(e)
+    # catch the exception
+    except requests.exceptions.ConnectionError as err:
+        flash('An API connection error occurred: {}'.format(str(err)))
+        return redirect(url_for('index'))
 
     return render_template(
         'index.html',
-        location=location,
+        location=results,
         ip_address=ip_address,
-        #results=results,
-        #entity=entity,
         mymap=mymap
     )
 
