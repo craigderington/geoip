@@ -3,6 +3,7 @@
 import os
 from flask import Flask, request, render_template, redirect, url_for, session, flash
 from flask_googlemaps import GoogleMaps, Map
+from datetime import datetime
 import requests
 from ipwhois import IPWhois
 import config
@@ -78,7 +79,8 @@ def index():
         'index.html',
         location=results,
         ip_address=ip_address,
-        mymap=mymap
+        mymap=mymap,
+        now=datetime.utcnow()
     )
 
 
